@@ -1,14 +1,31 @@
-<!DOCTYPE html>
-<html>
+
 <head>
-  <title>AngularOnRails</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	<meta charset="utf-8">
+
+	<title><%= page_title = yield :title %>| angular on rails</title>
+
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+
   <%= csrf_meta_tags %>
+
+
+	<%= yield :css %>
 </head>
 <body>
 
-<%= yield %>
+	<%= render_app_header %>
+	<div id="wrap">
+		<div id="main-content">
+			<%= yield :content %>
+		</div>
+	</div>
+	<%= render_app_footer %>
+	
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script>window.jQuery || document.write("<script src=\"<%= asset_path 'jquery-1.11.1.js' %>\">\x3C/script>")</script>
+	<%= javascript_include_tag 'application' %>
+	<%= yield :javascript %>
+
 
 </body>
 </html>
